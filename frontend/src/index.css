@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.ambient-shadow {
+  box-shadow: 0 20px 40px -10px rgba(112, 88, 91, 0.08);
+}
+
+.product-card:hover .quick-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.whatsapp-button {
+  background-color: #25D366;
+  transition: all 0.3s ease;
+}
+
+.whatsapp-button:hover {
+  background-color: #128C7E;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2);
+}
+
+.image-gallery-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.hero-shadow, .soft-glow-shadow {
+  box-shadow: 0 20px 40px -10px rgba(112, 88, 91, 0.08);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
