@@ -9,9 +9,9 @@ export default function Footer() {
           © 2024 Reesha. Every gift tells a story. Crafted with love.
         </div>
         <div className="flex gap-8">
-          <a href="#" className="text-stone-500 dark:text-stone-500 hover:text-rose-700 dark:hover:text-rose-300 transition-colors font-serif text-sm italic">Instagram</a>
-          <a href="#" className="text-stone-500 dark:text-stone-500 hover:text-rose-700 dark:hover:text-rose-300 transition-colors font-serif text-sm italic">Pinterest</a>
-          <a href="#" className="text-stone-500 dark:text-stone-500 hover:text-rose-700 dark:hover:text-rose-300 transition-colors font-serif text-sm italic">WhatsApp</a>
+          <a href="https://www.instagram.com/aura_gallery111?igsh=aHFobjg5ZGg5b3dy" target="_blank" rel="noopener noreferrer" className="text-stone-500 dark:text-stone-500 hover:text-rose-700 dark:hover:text-rose-300 transition-colors font-serif text-sm italic">Instagram</a>
+          <a href="https://www.tiktok.com/@aura_gallery111?_r=1&_t=ZS-96EsiXU469k" target="_blank" rel="noopener noreferrer" className="text-stone-500 dark:text-stone-500 hover:text-rose-700 dark:hover:text-rose-300 transition-colors font-serif text-sm italic">TikTok</a>
+          <a href="https://wa.me/923165262765" target="_blank" rel="noopener noreferrer" className="text-stone-500 dark:text-stone-500 hover:text-rose-700 dark:hover:text-rose-300 transition-colors font-serif text-sm italic">WhatsApp</a>
         </div>
       </div>
     </footer>

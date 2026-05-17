@@ -10,3 +10,7 @@ dist-ssr/
 .env.production.local
 .DS_Store
 stitch_reesha_personalized_gifting_platform/
+.vscode/
+.next/
+out/
+
