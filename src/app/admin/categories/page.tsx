@@ -94,7 +94,7 @@ export default function Categories() {
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name || (!preview && !selectedFile)) {
-      alert("Please provide both a name and an image.");
+      showToast("Please provide both a name and an image.", "error");
       return;
     }
     setLoading(true);
@@ -103,17 +103,32 @@ export default function Categories() {
       let imageUrl = preview;
       if (selectedFile) imageUrl = await compressAndUpload(selectedFile);
 
+      const payload: any = { name, image_url: imageUrl };
       if (editingCategory) {
-        const { error } = await supabase.from('categories').update({ name, image_url: imageUrl }).eq('id', editingCategory.id);
-        if (error) throw error;
-      } else {
-        const { error } = await supabase.from('categories').insert([{ name, image_url: imageUrl }]);
-        if (error) throw error;
+        payload.id = editingCategory.id;
       }
+
+      const response = await fetch('/api/categories', {
+        method: editingCategory ? 'PUT' : 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to save category.');
+      }
+
+      showToast(
+        editingCategory ? 'Category updated successfully.' : 'Category created successfully.',
+        'success'
+      );
       closeModal();
       fetchCategories();
     } catch (error: any) {
-      alert("Error: " + error.message);
+      showToast(error.message || 'An error occurred while saving.', 'error');
     } finally {
       setLoading(false);
     }
