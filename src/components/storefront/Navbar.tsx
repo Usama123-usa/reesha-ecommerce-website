@@ -1,0 +1,52 @@
+'use client';
+
+import { useState } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+
+export default function Navbar() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const isActive = (path: string) => pathname === path;
+  
+  const baseClass = "font-serif tracking-wide transition-colors";
+  const activeClass = "text-rose-900 dark:text-rose-100 border-b border-rose-900 dark:border-rose-100 pb-1 " + baseClass;
+  const inactiveClass = "text-stone-600 dark:text-stone-400 hover:text-rose-800 " + baseClass;
+
+  return (
+    <nav className="fixed top-0 w-full z-50 bg-white/80 dark:bg-stone-900/80 backdrop-blur-xl border-b border-rose-100/20 dark:border-white/10 shadow-sm shadow-rose-900/5">
+      <div className="flex justify-between items-center px-4 md:px-6 lg:px-8 py-4 max-w-7xl mx-auto">
+        <Link href="/" className="text-2xl font-serif italic text-rose-950 dark:text-rose-100 tracking-wide">
+          Reesha
+        </Link>
+        
+        {/* Desktop Menu */}
+        <div className="hidden md:flex items-center space-x-8">
+          <Link href="/" className={isActive('/') ? activeClass : inactiveClass}>Home</Link>
+          <Link href="/shop" className={isActive('/shop') ? activeClass : inactiveClass}>Shop</Link>
+          <Link href="/about" className={isActive('/about') ? activeClass : inactiveClass}>About</Link>
+          <Link href="/contact" className={isActive('/contact') ? activeClass : inactiveClass}>Contact</Link>
+        </div>
+        
+        {/* Mobile Hamburger */}
+        <div className="md:hidden flex items-center">
+          <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-stone-600 dark:text-stone-400 hover:text-rose-800 focus:outline-none">
+            <span className="material-symbols-outlined text-3xl">{isMobileMenuOpen ? 'close' : 'menu'}</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Menu Dropdown */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden bg-white/95 dark:bg-stone-900/95 backdrop-blur-xl border-t border-rose-100/20 dark:border-white/10 absolute w-full left-0 shadow-lg z-50">
+          <div className="flex flex-col items-center py-6 space-y-6">
+            <Link onClick={() => setIsMobileMenuOpen(false)} href="/" className={isActive('/') ? activeClass : inactiveClass}>Home</Link>
+            <Link onClick={() => setIsMobileMenuOpen(false)} href="/shop" className={isActive('/shop') ? activeClass : inactiveClass}>Shop</Link>
+            <Link onClick={() => setIsMobileMenuOpen(false)} href="/about" className={isActive('/about') ? activeClass : inactiveClass}>About</Link>
+            <Link onClick={() => setIsMobileMenuOpen(false)} href="/contact" className={isActive('/contact') ? activeClass : inactiveClass}>Contact</Link>
+          </div>
+        </div>
+      )}
+    </nav>
+  );
+}
