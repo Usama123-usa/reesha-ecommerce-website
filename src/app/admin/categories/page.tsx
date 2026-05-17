@@ -78,13 +78,21 @@ export default function Categories() {
     const options = { maxSizeMB: 1, maxWidthOrHeight: 1200, useWebWorker: true };
     try {
       const compressedFile = await imageCompression(file, options);
-      const fileExt = file.name.split('.').pop();
-      const fileName = `${Math.random().toString(36).substring(2)}.${fileExt}`;
-      const filePath = `categories/${fileName}`;
-      const { error: uploadError } = await supabase.storage.from('product-images').upload(filePath, compressedFile);
-      if (uploadError) throw uploadError;
-      const { data: { publicUrl } } = supabase.storage.from('product-images').getPublicUrl(filePath);
-      return publicUrl;
+      const formData = new FormData();
+      formData.append('file', compressedFile);
+      formData.append('folder', 'categories');
+
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || 'Upload failed.');
+      }
+
+      return data.publicUrl;
     } catch (error) {
       console.error("Upload error:", error);
       throw error;

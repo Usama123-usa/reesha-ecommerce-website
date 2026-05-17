@@ -142,13 +142,21 @@ function AdminDashboardContent() {
     const options = { maxSizeMB: 1, maxWidthOrHeight: 1200, useWebWorker: true };
     try {
       const compressedFile = await imageCompression(file, options);
-      const fileExt = file.name.split('.').pop();
-      const fileName = `${productId}/${Math.random().toString(36).substring(2)}.${fileExt}`;
-      const filePath = `products/${fileName}`;
-      const { error } = await supabase.storage.from('product-images').upload(filePath, compressedFile);
-      if (error) throw error;
-      const { data: { publicUrl } } = supabase.storage.from('product-images').getPublicUrl(filePath);
-      return publicUrl;
+      const formData = new FormData();
+      formData.append('file', compressedFile);
+      formData.append('folder', `products/${productId}`);
+
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || 'Upload failed.');
+      }
+
+      return data.publicUrl;
     } catch (error) {
       console.error("Upload error:", error);
       throw error;
