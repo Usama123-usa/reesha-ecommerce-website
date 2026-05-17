@@ -136,6 +136,7 @@ export default function Home() {
                   key={idx}
                   onClick={() => setCurrentSlide(idx)}
                   className={`w-2 h-2 rounded-full transition-all ${currentSlide === idx ? 'bg-white w-8' : 'bg-white/40'}`}
+                  aria-label={`Slide ${idx + 1}`}
                 />
               ))}
             </div>
