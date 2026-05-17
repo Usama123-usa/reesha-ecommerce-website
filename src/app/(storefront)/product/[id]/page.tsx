@@ -117,6 +117,29 @@ Message: ${message || '[Not provided]'}`;
     );
   }
 
+  const getWidthClass = (st: number) => {
+    const pct = Math.min(100, Math.max(0, Math.round(((st || 0) / 20) * 100)));
+    if (pct >= 95) return 'w-[100%]';
+    if (pct >= 90) return 'w-[90%]';
+    if (pct >= 85) return 'w-[85%]';
+    if (pct >= 80) return 'w-[80%]';
+    if (pct >= 75) return 'w-[75%]';
+    if (pct >= 70) return 'w-[70%]';
+    if (pct >= 65) return 'w-[65%]';
+    if (pct >= 60) return 'w-[60%]';
+    if (pct >= 55) return 'w-[55%]';
+    if (pct >= 50) return 'w-[50%]';
+    if (pct >= 45) return 'w-[45%]';
+    if (pct >= 40) return 'w-[40%]';
+    if (pct >= 35) return 'w-[35%]';
+    if (pct >= 30) return 'w-[30%]';
+    if (pct >= 25) return 'w-[25%]';
+    if (pct >= 20) return 'w-[20%]';
+    if (pct >= 15) return 'w-[15%]';
+    if (pct >= 10) return 'w-[10%]';
+    return 'w-[5%]';
+  };
+
   return (
     <main className="pt-24 pb-20 max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-8 lg:gap-x-16 lg:gap-y-0">
@@ -132,7 +155,7 @@ Message: ${message || '[Not provided]'}`;
             <div className="flex flex-col items-end">
               <span className="text-xs font-bold text-error animate-pulse uppercase tracking-tighter">Only {stock} left in stock</span>
               <div className="w-24 h-1 bg-surface-container-high rounded-full mt-1 overflow-hidden">
-                <div className="h-full bg-error transition-all duration-1000" style={{ width: `${(stock/20)*100}%` }}></div>
+                <div className={`h-full bg-error transition-all duration-1000 ${getWidthClass(stock)}`}></div>
               </div>
             </div>
           </div>

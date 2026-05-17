@@ -58,6 +58,19 @@ export default function Home() {
     }
   }, [reviews.length, isReviewPaused]);
 
+  const getTranslateClass = (slideIndex: number) => {
+    switch (slideIndex) {
+      case 0: return 'translate-x-0';
+      case 1: return '-translate-x-[100%]';
+      case 2: return '-translate-x-[200%]';
+      case 3: return '-translate-x-[300%]';
+      case 4: return '-translate-x-[400%]';
+      case 5: return '-translate-x-[500%]';
+      case 6: return '-translate-x-[600%]';
+      default: return 'translate-x-0';
+    }
+  };
+
   return (
     <main>
       {/* Hero Section */}
@@ -96,8 +109,7 @@ export default function Home() {
         
         <div className="relative overflow-hidden group">
           <div 
-            className="flex transition-transform duration-1000 ease-in-out"
-            style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+            className={`flex transition-transform duration-1000 ease-in-out ${getTranslateClass(currentSlide)}`}
           >
             {categories.length > 0 ? (
               categories.map((cat) => (
