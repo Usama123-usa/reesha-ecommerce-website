@@ -2,11 +2,13 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    unoptimized: true,
-  },
-  experimental: {
-    workerThreads: false,
-    cpus: 1,
+    // Use Vercel's built-in image optimization (remove unoptimized:true for production)
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**",
+      },
+    ],
   },
 };
 
