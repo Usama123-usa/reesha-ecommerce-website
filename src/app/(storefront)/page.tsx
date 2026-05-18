@@ -77,8 +77,8 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center pt-20 px-margin-mobile md:px-margin-desktop overflow-hidden w-full max-w-full">
         <div className="absolute inset-0 z-0">
-          <Image 
-            className="w-full h-full object-cover brightness-95" 
+          <Image
+            className="w-full h-full object-cover brightness-95"
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyNmbajqNyIATG-gNkK_n8g-5vWMoWXNMqXRVwRCnuc6csXP776IVU4u44t2sGcYZHTXYwwyHii17irMzHQl1-H7lAfsN59sQ_7VcayKdfFucMUG3dzUDXM38B-NAuKRJ4Pcj87ixz7Eed22QcSl7kpXCyGbRHzEWA_-vN_4xkJLhgJ6p4A7LRYn84crY-Sn58cWyVVEMippe78N83rLyXYsTqsMMIPSij7aSNI4AH46s6ZaARzClM3WWEOo2dIVrW3CpTKq_VBCA"
             alt="Premium Gift Delivery in Islamabad and Rawalpindi - Reesha Gifting"
             fill
@@ -88,10 +88,10 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/40 to-transparent"></div>
         </div>
         <div className="relative z-10 max-w-2xl w-full overflow-hidden">
-          <span className="font-label-caps text-label-caps text-primary tracking-[0.2em] mb-6 block uppercase">Premium Gift Delivery Islamabad</span>
-          <h1 className="font-display-lg text-display-lg text-on-surface mb-8 leading-tight break-words">Gift Delivery in Islamabad & Rawalpindi</h1>
+          <span className="font-label-caps text-label-caps text-primary tracking-[0.2em] mb-6 block uppercase">Artisan Gifting</span>
+          <h1 className="font-display-lg text-display-lg text-on-surface mb-8 leading-tight break-words">Make Every GIft Personal</h1>
           <p className="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-lg italic">
-            Looking for the best online gift shop in Pakistan? Reesha offers curated, hand-finished personalized gifts and luxury baskets with same-day delivery in Islamabad and Rawalpindi.
+            Transforming moments into memories with curated hand-finished gifts and luxury baskets designed  to tell your unique story.
           </p>
           <div className="flex flex-col sm:flex-row flex-wrap gap-4">
             <Link href="/shop" className="flex w-full sm:w-auto px-6 py-3 bg-primary text-on-primary text-sm md:text-base lg:text-lg items-center justify-center hover:scale-[1.02] transition-all shadow-xl shadow-primary/20">
@@ -110,18 +110,18 @@ export default function Home() {
         <div className="text-center mb-16">
           <h2 className="font-headline-md text-headline-md text-on-surface">Curated for Every Occasion</h2>
         </div>
-        
+
         <div className="relative overflow-hidden group">
-          <div 
+          <div
             className={`flex transition-transform duration-1000 ease-in-out ${getTranslateClass(currentSlide)}`}
           >
             {categories.length > 0 ? (
               categories.map((cat) => (
                 <div key={cat.id} className="w-full flex-shrink-0 px-4">
                   <div className="relative h-[500px] overflow-hidden rounded-2xl group/card">
-                    <Image 
-                      className="w-full h-full object-cover transition-transform duration-[2s] group-hover/card:scale-110" 
-                      src={cat.image_url || 'https://via.placeholder.com/1200x500?text=' + cat.name} 
+                    <Image
+                      className="w-full h-full object-cover transition-transform duration-[2s] group-hover/card:scale-110"
+                      src={cat.image_url || 'https://via.placeholder.com/1200x500?text=' + cat.name}
                       alt={cat.name}
                       fill
                       sizes="(max-width: 768px) 100vw, 50vw"
@@ -130,8 +130,8 @@ export default function Home() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                     <div className="absolute bottom-12 left-12 right-12 text-white">
                       <h3 className="font-headline-md text-4xl mb-4">{cat.name}</h3>
-                      <Link 
-                        className="inline-block bg-white text-primary px-8 py-3 rounded-full font-label-caps tracking-widest hover:bg-primary hover:text-white transition-all shadow-xl" 
+                      <Link
+                        className="inline-block bg-white text-primary px-8 py-3 rounded-full font-label-caps tracking-widest hover:bg-primary hover:text-white transition-all shadow-xl"
                         href={`/shop?category=${cat.id}`}
                       >
                         EXPLORE COLLECTION
@@ -151,7 +151,7 @@ export default function Home() {
           {categories.length > 1 && (
             <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
               {categories.map((_, idx) => (
-                <button 
+                <button
                   key={idx}
                   onClick={() => setCurrentSlide(idx)}
                   className={`w-2 h-2 rounded-full transition-all ${currentSlide === idx ? 'bg-white w-8' : 'bg-white/40'}`}
@@ -173,14 +173,14 @@ export default function Home() {
             </div>
             <Link className="text-primary font-body-md border-b border-primary/30 pb-1" href="/shop">View All Products</Link>
           </div>
-          
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {featuredProducts.length > 0 ? (
               featuredProducts.map(product => (
-                <ProductCard 
+                <ProductCard
                   key={product.id}
-                  title={product.name} 
-                  price={`Rs. ${product.price.toLocaleString()}`} 
+                  title={product.name}
+                  price={`Rs. ${product.price.toLocaleString()}`}
                   image={product.image}
                   id={product.id}
                 />
@@ -206,8 +206,8 @@ export default function Home() {
             <span className="font-label-caps text-tertiary tracking-widest block mb-4">VOICES OF JOY</span>
             <h2 className="font-headline-md text-headline-md">Shared Stories</h2>
           </div>
-          
-          <div 
+
+          <div
             className="max-w-4xl mx-auto relative group overflow-hidden w-full"
             onMouseEnter={() => setIsReviewPaused(true)}
             onMouseLeave={() => setIsReviewPaused(false)}
@@ -222,8 +222,8 @@ export default function Home() {
                   const rating = review.rating || 0;
 
                   return (
-                    <div 
-                      key={review.id} 
+                    <div
+                      key={review.id}
                       className={`col-start-1 row-start-1 bg-surface-container-low p-6 md:p-12 rounded-[3rem] flex flex-col justify-between border border-outline-variant/10 shadow-sm transition-all duration-1000 ease-in-out overflow-hidden w-full min-w-0 h-[360px] sm:h-[310px] md:h-[330px] ${idx === currentReviewIndex ? 'opacity-100 translate-x-0 z-10' : 'opacity-0 translate-x-8 pointer-events-none z-0'}`}
                     >
                       <div className="mb-4 overflow-hidden flex-1">
@@ -231,8 +231,8 @@ export default function Home() {
                           {[...Array(5)].map((_, i) => {
                             const isFilled = i < rating;
                             return (
-                              <span 
-                                key={i} 
+                              <span
+                                key={i}
                                 className={`material-symbols-outlined text-sm ${isFilled ? 'text-primary filled-icon' : 'text-primary/30'}`}
                               >
                                 star
@@ -268,7 +268,7 @@ export default function Home() {
             {reviews.length > 1 && (
               <div className="flex justify-center gap-3 mt-12">
                 {reviews.map((_, idx) => (
-                  <button 
+                  <button
                     key={idx}
                     onClick={() => setCurrentReviewIndex(idx)}
                     className={`h-1.5 rounded-full transition-all duration-500 ${idx === currentReviewIndex ? 'bg-primary w-8' : 'bg-primary/20 w-4'}`}
