@@ -1,4 +1,43 @@
+'use client';
+
+import { useState } from 'react';
+
 export default function About() {
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+
+    setStatus('loading');
+    setErrorMessage('');
+
+    try {
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setStatus('success');
+        setEmail('');
+      } else {
+        setStatus('error');
+        setErrorMessage(data.error || 'Something went wrong. Please try again.');
+      }
+    } catch (err) {
+      console.error(err);
+      setStatus('error');
+      setErrorMessage('Failed to connect to the server. Please check your connection.');
+    }
+  };
   return (
     <main className="pt-24">
       {/* Hero Section */}
@@ -120,12 +159,39 @@ export default function About() {
           <p className="text-body-lg font-body-lg text-on-primary-container/80 mt-4 max-w-xl">
             Subscribe to our occasional letters on the art of living, giving, and connecting. No noise, just inspiration.
           </p>
-          <form className="mt-12 flex flex-col sm:flex-row w-full max-w-md gap-4">
-            <input className="flex-1 bg-white/50 border-0 focus:ring-2 focus:ring-primary rounded px-6 py-4" placeholder="Your email address" type="email" />
-            <button className="bg-primary text-on-primary px-8 py-4 font-body-md rounded hover:opacity-90 transition-opacity">
-              Join Us
-            </button>
-          </form>
+          {status === 'success' ? (
+            <div className="mt-8 p-6 bg-primary/10 border border-primary/20 rounded-xl text-primary font-medium max-w-md w-full animate-fade-in">
+              ✨ Thank you! You've successfully subscribed to our letters. Welcome to the story.
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="mt-12 flex flex-col sm:flex-row w-full max-w-md gap-4">
+              <div className="flex-1 flex flex-col items-start gap-1 w-full">
+                <input 
+                  className="w-full bg-white/50 border-0 focus:ring-2 focus:ring-primary rounded px-6 py-4 text-on-surface" 
+                  placeholder="Your email address" 
+                  type="email" 
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  disabled={status === 'loading'}
+                />
+                {status === 'error' && (
+                  <span className="text-error text-xs mt-1 font-medium">{errorMessage}</span>
+                )}
+              </div>
+              <button 
+                type="submit"
+                disabled={status === 'loading'}
+                className="bg-primary text-on-primary px-8 py-4 font-body-md rounded hover:opacity-90 transition-opacity disabled:opacity-50 flex items-center justify-center min-w-[120px]"
+              >
+                {status === 'loading' ? (
+                  <span className="animate-spin rounded-full h-5 w-5 border-2 border-on-primary border-t-transparent"></span>
+                ) : (
+                  'Join Us'
+                )}
+              </button>
+            </form>
+          )}
         </div>
       </section>
     </main>
