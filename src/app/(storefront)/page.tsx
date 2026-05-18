@@ -212,6 +212,8 @@ export default function Home() {
                   const commentText = review.comment || "An absolutely wonderful experience from start to finish. The personalization was perfect.";
                   const displayComment = commentText.length > limit ? commentText.substring(0, limit).trim() + "..." : commentText;
 
+                  const rating = review.rating || 0;
+
                   return (
                     <div 
                       key={review.id} 
@@ -219,9 +221,18 @@ export default function Home() {
                     >
                       <div className="mb-4 overflow-hidden flex-1">
                         <div className="flex gap-1 mb-4">
-                          {[...Array(5)].map((_, i) => (
-                            <span key={i} className="material-symbols-outlined text-primary text-sm">star</span>
-                          ))}
+                          {[...Array(5)].map((_, i) => {
+                            const isFilled = i < rating;
+                            return (
+                              <span 
+                                key={i} 
+                                className={`material-symbols-outlined text-sm ${isFilled ? 'text-primary' : 'text-primary/30'}`}
+                                style={isFilled ? { fontVariationSettings: "'FILL' 1" } : undefined}
+                              >
+                                star
+                              </span>
+                            );
+                          })}
                         </div>
                         <span className="material-symbols-outlined text-primary text-5xl opacity-10 mb-2 block">format_quote</span>
                         <p className="font-display-md italic text-on-surface-variant leading-relaxed text-lg md:text-xl break-words overflow-wrap-anywhere min-w-0 w-full">

@@ -284,27 +284,45 @@ Message: ${message || '[Not provided]'}`;
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {reviews.map((review) => (
-              <div key={review.id} className="bg-surface-container-low p-8 rounded-[2.5rem] border border-outline-variant/10 shadow-sm hover:shadow-xl transition-all">
-                <div className="mb-6 flex gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} className="material-symbols-outlined text-primary text-lg">star</span>
-                  ))}
-                </div>
-                <p className="text-on-surface-variant font-body italic mb-6 leading-relaxed">
-                  "{review.comment}"
-                </p>
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">
-                    {review.user_name?.[0] || 'U'}
+            {reviews.map((review) => {
+              const rating = review.rating || 0;
+              const limit = 140;
+              const commentText = review.comment || "An absolutely wonderful experience from start to finish. The personalization was perfect.";
+              const displayComment = commentText.length > limit ? commentText.substring(0, limit).trim() + "..." : commentText;
+
+              return (
+                <div key={review.id} className="bg-surface-container-low p-6 rounded-[2rem] border border-outline-variant/10 shadow-sm hover:shadow-xl transition-all flex flex-col justify-between min-w-0 w-full overflow-hidden h-[260px]">
+                  <div className="overflow-hidden flex-1 mb-4">
+                    <div className="mb-4 flex gap-1">
+                      {[...Array(5)].map((_, i) => {
+                        const isFilled = i < rating;
+                        return (
+                          <span 
+                            key={i} 
+                            className={`material-symbols-outlined text-lg ${isFilled ? 'text-primary' : 'text-primary/30'}`}
+                            style={isFilled ? { fontVariationSettings: "'FILL' 1" } : undefined}
+                          >
+                            star
+                          </span>
+                        );
+                      })}
+                    </div>
+                    <p className="text-on-surface-variant font-body italic leading-relaxed text-sm md:text-base break-words overflow-wrap-anywhere w-full max-w-full">
+                      &ldquo;{displayComment}&rdquo;
+                    </p>
                   </div>
-                  <div>
-                    <p className="font-title-sm text-primary mb-0.5">{review.user_name}</p>
-                    <p className="text-[10px] text-outline font-bold uppercase tracking-widest">Verified Collector</p>
+                  <div className="flex items-center gap-4 border-t border-outline-variant/20 pt-4 mt-auto">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">
+                      {review.user_name?.[0] || 'U'}
+                    </div>
+                    <div>
+                      <p className="font-title-sm text-primary mb-0.5">{review.user_name}</p>
+                      <p className="text-[10px] text-outline font-bold uppercase tracking-widest">Verified Collector</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </section>
       )}
