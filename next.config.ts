@@ -1,8 +1,13 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  compress: true,
+  reactStrictMode: true,
+  poweredByHeader: false,
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
   images: {
-    // Use Vercel's built-in image optimization (remove unoptimized:true for production)
     remotePatterns: [
       {
         protocol: "https",

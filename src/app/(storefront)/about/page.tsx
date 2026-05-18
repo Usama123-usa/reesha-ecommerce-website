@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 
 export default function About() {
   const [email, setEmail] = useState('');
@@ -58,11 +59,14 @@ export default function About() {
         </div>
         <div className="md:w-1/2 relative mt-6 md:mt-10 flex justify-center items-center">
           <div className="absolute -top-10 -left-10 w-64 h-64 bg-primary-container rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
-          <div className="relative rounded-2xl overflow-hidden hero-shadow aspect-[4/5]">
-            <img 
+          <div className="relative rounded-2xl overflow-hidden hero-shadow aspect-[4/5] w-full">
+            <Image 
               className="w-full h-full object-cover" 
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCCt03BCod0_lUA1TcQIxwMFLpsH2uC-y1sgLx3g_zbhxEw7Z52hYJWjmfWipKC72FXqKMF-0RwGLPqptZwYZ8VuD69-JUbSOtCudfIMexNfV4DAdbVkwgn7rVSfOso8zs0wbL4I1LSn_aiSTfoSu2LF1h2WvqtrYmGwQWaeg3Hul8jW0V81NHnr8eMTHdRx0Kh2E4l8g52Znnmkw9VRfQjOT1GSOVGBINjyQDfuie-DEVl6octbc7hy2dc59qqTUItsORMD54HPY"
               alt="Gift box"
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, 50vw"
             />
           </div>
           <div className="absolute -bottom-8 -right-8 glass-card p-6 rounded-xl hidden lg:block max-w-xs">
@@ -109,34 +113,46 @@ export default function About() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 h-auto items-center">
           <div className="md:col-span-8 relative rounded-2xl overflow-hidden group aspect-video">
-            <img 
+            <Image 
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyAH2jlTrqv03UlDrP7ICKCrJMvez17bKYjp4f5sip4AQnJgHGbpgclrnuaHejjs-9cg79FGprE3fCfxYZnaWm17xy4iU6KKwgR2ppwDlYvegzDOZzPMJbELCtY9grTPTHsnuiF3VEQscO8bjSDGveRpV2v5oNWrxiFKRKXq0h2TqIVOZeTFuiQQDxfyNqOMDd-1llG2h652Y7_BxS5L-FGldebQLKTvAbdn2e-VQFGlgEIxRp8qW5B7usgl5zuyrvVgacC_2c2E4"
               alt="Artisan"
+              fill
+              sizes="(max-width: 768px) 100vw, 66vw"
+              loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
-              <p className="text-on-primary font-body-lg">The Art of Curation</p>
+              <p className="text-on-primary font-body-lg z-10">The Art of Curation</p>
             </div>
           </div>
           <div className="md:col-span-4 relative rounded-2xl overflow-hidden group aspect-square">
-            <img 
+            <Image 
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYOaLlpNS1GyMTFYvIXBAnQ_0htA3V-_4JJKzwM1RdKyEZejFF8LZOE7mWzV3z6pISX9N6Vaw4pyXxW81LRBhCynKuHpaKKUcsMUltcpfb3Gyyk5RInfZUZx1CJ3uim2h5oWbpoYN4CecPW6eZO5UStsnTb57WD-tYlLyEvMM9gRvdBuIRyswO-2iHq0TBT9_-eLi_KcKbBRroRvCg2q6rhzNkJl6V4kBUde0ZCk5eZIUiBqxTXHHUqXa-kSeBbRiulxYIINqFvQ0"
               alt="Writing note"
+              fill
+              sizes="(max-width: 768px) 100vw, 33vw"
+              loading="lazy"
             />
           </div>
           <div className="md:col-span-4 relative rounded-2xl overflow-hidden group aspect-square">
-            <img 
+            <Image 
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-5spTGPHpILmWc7Bk8te04XNazISXgZIjySWaVmPQLfFjrzw1frjXITpGr7yEk6RajXOoXanzhZEEYsaf6_emlzvG1EoNef3robw-Zof5GaZSvPecyECC78iF7ptCzUKx0D0DbIXucrZeboT8Z9L9oIYB004oAqgw388ysFWrPahD3m4wFqsh-8wBWaTaXGMUecyWo-bNwyjX0X8Pvc95oIbz-Spr2qbfCklPrTDNgvH8cntMjOuLAUs__2OuKKn157YoSWxJUeU"
               alt="Wrapping"
+              fill
+              sizes="(max-width: 768px) 100vw, 33vw"
+              loading="lazy"
             />
           </div>
           <div className="md:col-span-8 relative rounded-2xl overflow-hidden group aspect-video">
-            <img 
+            <Image 
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAh2HJpw8BZCnO_3Cz66VllyhMxjkjImeZjj1GBF_CfGLjayGZcCX4jGQ6I92fIJsOYPFkd3iuVnRjGODayLGLbAbn9TnsFFf5dLpS237miv_sNDstSARr7dCJgp1DS1qKj81bY_8EUernAx4J4sQolB77hZOd4J9CE2r88FjhpzccmgfXTVepP7yRU1x0dm2g2W8t5oK34WbNX7khnogfnDMZjLfZL1-lLA-EvWsw-FG9w_PxtwlYHyG4Jb-IGbhNiX5XZ34gDJY"
               alt="Boutique interior"
+              fill
+              sizes="(max-width: 768px) 100vw, 66vw"
+              loading="lazy"
             />
           </div>
         </div>

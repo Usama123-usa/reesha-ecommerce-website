@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 
 export default function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -94,13 +95,16 @@ export default function Contact() {
           </div>
 
           {/* Decorative Image */}
-          <div className="relative h-64 rounded-xl overflow-hidden soft-glow-shadow">
-            <img
+          <div className="relative h-64 rounded-xl overflow-hidden soft-glow-shadow w-full">
+            <Image
               className="w-full h-full object-cover"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuDizsaZlguYLpeC2veu0q4_6zFzTmb0pd0oDNujbdIXbljU7gnCeVi7oHmpKrj9pbx1aCww8VISvfjW7rLJ54cZzHVWmJ21fVROb6jwy5HYYXEqD3kB0cISRZaEd5pRfkxLo0GPaXGHsybxLKXyXb1UcftJuRq69HaCCTeDi846401GSIIi8iZQcbQJIC6UmNeJusumnqy5bXl7AOVjVMRCt6GUnqqsdKGOilg30H46jyfgRUtY3E0QmS8MBgxQNl8kh8Otpei-dUo"
               alt="Artisan stationery"
+              fill
+              sizes="(max-width: 768px) 100vw, 33vw"
+              loading="lazy"
             />
-            <div className="absolute inset-0 bg-primary/10 mix-blend-multiply"></div>
+            <div className="absolute inset-0 bg-primary/10 mix-blend-multiply z-10"></div>
           </div>
         </div>
 

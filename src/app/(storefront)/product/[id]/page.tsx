@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
+import Image from 'next/image';
 import { supabase } from '@/lib/supabaseClient';
 
 export default function ProductDetail() {
@@ -179,10 +180,13 @@ Message: ${message || '[Not provided]'}`;
         {/* Product Image Gallery */}
         <div className="lg:col-start-1 lg:col-span-7 lg:row-start-1 lg:row-span-3 space-y-6">
           <div className="relative group aspect-[4/5] w-full bg-surface-container-low rounded-xl overflow-hidden shadow-sm shadow-primary/5">
-            <img 
+            <Image 
               alt={product.name} 
               className="w-full h-full object-cover transition-opacity duration-300" 
               src={activeImage || 'https://via.placeholder.com/600x800?text=No+Image'}
+              fill
+              priority
+              sizes="(max-width: 1024px) 100vw, 50vw"
             />
             
             {images.length > 1 && (
@@ -220,7 +224,14 @@ Message: ${message || '[Not provided]'}`;
                   }}
                   className={`aspect-square rounded-lg overflow-hidden cursor-pointer border-2 transition-all ${activeImage === img ? 'border-primary' : 'border-transparent hover:border-outline-variant'}`}
                 >
-                  <img src={img} alt={`Thumbnail ${idx}`} className="w-full h-full object-cover" />
+                  <img 
+                    src={img} 
+                    alt={`Thumbnail ${idx}`} 
+                    className="w-full h-full object-cover" 
+                    loading="lazy" 
+                    decoding="async" 
+                    fetchPriority="low" 
+                  />
                 </div>
               ))}
             </div>

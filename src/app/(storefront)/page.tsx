@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import ProductCard from '@/components/storefront/ProductCard';
 import { supabase } from '@/lib/supabaseClient';
 
@@ -76,10 +77,13 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center pt-20 px-margin-mobile md:px-margin-desktop overflow-hidden w-full max-w-full">
         <div className="absolute inset-0 z-0">
-          <img 
+          <Image 
             className="w-full h-full object-cover brightness-95" 
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyNmbajqNyIATG-gNkK_n8g-5vWMoWXNMqXRVwRCnuc6csXP776IVU4u44t2sGcYZHTXYwwyHii17irMzHQl1-H7lAfsN59sQ_7VcayKdfFucMUG3dzUDXM38B-NAuKRJ4Pcj87ixz7Eed22QcSl7kpXCyGbRHzEWA_-vN_4xkJLhgJ6p4A7LRYn84crY-Sn58cWyVVEMippe78N83rLyXYsTqsMMIPSij7aSNI4AH46s6ZaARzClM3WWEOo2dIVrW3CpTKq_VBCA"
             alt="Premium Gift Delivery in Islamabad and Rawalpindi - Reesha Gifting"
+            fill
+            priority
+            sizes="100vw"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/40 to-transparent"></div>
         </div>
@@ -115,10 +119,13 @@ export default function Home() {
               categories.map((cat) => (
                 <div key={cat.id} className="w-full flex-shrink-0 px-4">
                   <div className="relative h-[500px] overflow-hidden rounded-2xl group/card">
-                    <img 
+                    <Image 
                       className="w-full h-full object-cover transition-transform duration-[2s] group-hover/card:scale-110" 
                       src={cat.image_url || 'https://via.placeholder.com/1200x500?text=' + cat.name} 
                       alt={cat.name}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                     <div className="absolute bottom-12 left-12 right-12 text-white">
