@@ -50,17 +50,17 @@
   --color-surface-dim: #dadada;
 
   /* --- Font Families --- */
-  --font-body: var(--font-manrope), "Manrope", sans-serif;
-  --font-headline: var(--font-noto-serif), "Noto Serif", serif;
+  --font-body: "Manrope", sans-serif;
+  --font-headline: "Noto Serif", serif;
 
   /* Semantic font family tokens (used as font-{name} classes) */
-  --font-display-lg: var(--font-noto-serif), "Noto Serif", serif;
-  --font-display-md: var(--font-noto-serif), "Noto Serif", serif;
-  --font-headline-md: var(--font-noto-serif), "Noto Serif", serif;
-  --font-body-lg: var(--font-manrope), "Manrope", sans-serif;
-  --font-body-md: var(--font-manrope), "Manrope", sans-serif;
-  --font-label-caps: var(--font-manrope), "Manrope", sans-serif;
-  --font-title-sm: var(--font-manrope), "Manrope", sans-serif;
+  --font-display-lg: "Noto Serif", serif;
+  --font-display-md: "Noto Serif", serif;
+  --font-headline-md: "Noto Serif", serif;
+  --font-body-lg: "Manrope", sans-serif;
+  --font-body-md: "Manrope", sans-serif;
+  --font-label-caps: "Manrope", sans-serif;
+  --font-title-sm: "Manrope", sans-serif;
 
   /* --- Typography Scale (font-size tokens) --- */
   /* clamp(min, fluid, max) — responsive without media queries */
@@ -148,6 +148,10 @@
 .overflow-wrap-anywhere {
   overflow-wrap: anywhere;
   word-break: break-word;
+}
+
+.filled-icon {
+  font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 24 !important;
 }
 
 

@@ -233,8 +233,7 @@ export default function Home() {
                             return (
                               <span 
                                 key={i} 
-                                className={`material-symbols-outlined text-sm ${isFilled ? 'text-primary' : 'text-primary/30'}`}
-                                style={isFilled ? { fontVariationSettings: "'FILL' 1" } : undefined}
+                                className={`material-symbols-outlined text-sm ${isFilled ? 'text-primary filled-icon' : 'text-primary/30'}`}
                               >
                                 star
                               </span>
