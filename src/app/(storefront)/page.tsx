@@ -74,7 +74,7 @@ export default function Home() {
   return (
     <main>
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center pt-20 px-margin-mobile md:px-margin-desktop overflow-hidden">
+      <section className="relative min-h-screen flex items-center pt-20 px-margin-mobile md:px-margin-desktop overflow-hidden w-full max-w-full">
         <div className="absolute inset-0 z-0">
           <img 
             className="w-full h-full object-cover brightness-95" 
@@ -83,9 +83,9 @@ export default function Home() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/40 to-transparent"></div>
         </div>
-        <div className="relative z-10 max-w-2xl">
+        <div className="relative z-10 max-w-2xl w-full overflow-hidden">
           <span className="font-label-caps text-label-caps text-primary tracking-[0.2em] mb-6 block uppercase">Premium Gift Delivery Islamabad</span>
-          <h1 className="font-display-lg text-display-lg text-on-surface mb-8 leading-tight">Gift Delivery in Islamabad & Rawalpindi</h1>
+          <h1 className="font-display-lg text-display-lg text-on-surface mb-8 leading-tight break-words">Gift Delivery in Islamabad & Rawalpindi</h1>
           <p className="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-lg italic">
             Looking for the best online gift shop in Pakistan? Reesha offers curated, hand-finished personalized gifts and luxury baskets with same-day delivery in Islamabad and Rawalpindi.
           </p>
@@ -201,7 +201,7 @@ export default function Home() {
           </div>
           
           <div 
-            className="max-w-4xl mx-auto relative group"
+            className="max-w-4xl mx-auto relative group overflow-hidden w-full"
             onMouseEnter={() => setIsReviewPaused(true)}
             onMouseLeave={() => setIsReviewPaused(false)}
           >
@@ -210,7 +210,7 @@ export default function Home() {
                 {reviews.map((review, idx) => (
                   <div 
                     key={review.id} 
-                    className={`col-start-1 row-start-1 bg-surface-container-low p-10 md:p-16 rounded-[3rem] flex flex-col justify-between border border-outline-variant/10 shadow-sm transition-all duration-1000 ease-in-out ${idx === currentReviewIndex ? 'opacity-100 translate-x-0 z-10' : 'opacity-0 translate-x-8 pointer-events-none z-0'}`}
+                    className={`col-start-1 row-start-1 bg-surface-container-low p-8 md:p-14 rounded-[3rem] flex flex-col justify-between border border-outline-variant/10 shadow-sm transition-all duration-1000 ease-in-out overflow-hidden w-full min-w-0 ${idx === currentReviewIndex ? 'opacity-100 translate-x-0 z-10' : 'opacity-0 translate-x-8 pointer-events-none z-0'}`}
                   >
                     <div className="mb-8">
                       <div className="flex gap-1 mb-6">
@@ -219,8 +219,8 @@ export default function Home() {
                         ))}
                       </div>
                       <span className="material-symbols-outlined text-primary text-5xl opacity-10 mb-2 block">format_quote</span>
-                      <p className="font-display-md italic text-on-surface-variant leading-relaxed text-xl md:text-2xl">
-                        "{review.comment || "An absolutely wonderful experience from start to finish. The personalization was perfect."}"
+                      <p className="font-display-md italic text-on-surface-variant leading-relaxed text-xl md:text-2xl break-words overflow-wrap-anywhere min-w-0 w-full">
+                        &ldquo;{review.comment || "An absolutely wonderful experience from start to finish. The personalization was perfect."}&rdquo;
                       </p>
                     </div>
                     <div className="pt-8 border-t border-outline-variant/20 flex items-center gap-4">

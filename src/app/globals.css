@@ -49,9 +49,30 @@
   --color-surface-container: #eeeeee;
   --color-surface-dim: #dadada;
 
+  /* --- Font Families --- */
   --font-body: "Manrope", sans-serif;
   --font-headline: "Noto Serif", serif;
 
+  /* Semantic font family tokens (used as font-{name} classes) */
+  --font-display-lg: "Noto Serif", serif;
+  --font-display-md: "Noto Serif", serif;
+  --font-headline-md: "Noto Serif", serif;
+  --font-body-lg: "Manrope", sans-serif;
+  --font-body-md: "Manrope", sans-serif;
+  --font-label-caps: "Manrope", sans-serif;
+  --font-title-sm: "Manrope", sans-serif;
+
+  /* --- Typography Scale (font-size tokens) --- */
+  /* clamp(min, fluid, max) — responsive without media queries */
+  --text-display-lg: clamp(2.25rem, 5vw, 4rem);
+  --text-display-md: clamp(1.75rem, 4vw, 3rem);
+  --text-headline-md: clamp(1.5rem, 3vw, 2.25rem);
+  --text-body-lg: 1.125rem;
+  --text-body-md: 1rem;
+  --text-label-caps: 0.6875rem;
+  --text-title-sm: 0.9375rem;
+
+  /* --- Spacing --- */
   --spacing-container-max: 1280px;
   --spacing-unit: 8px;
   --spacing-section-gap: 80px;
@@ -123,4 +144,10 @@
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
+
+.overflow-wrap-anywhere {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
 
