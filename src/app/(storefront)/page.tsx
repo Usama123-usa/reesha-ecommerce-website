@@ -53,7 +53,7 @@ export default function Home() {
     if (reviews.length > 1 && !isReviewPaused) {
       const timer = setInterval(() => {
         setCurrentReviewIndex((prev) => (prev + 1) % reviews.length);
-      }, 5000);
+      }, 3000);
       return () => clearInterval(timer);
     }
   }, [reviews.length, isReviewPaused]);
@@ -207,33 +207,39 @@ export default function Home() {
           >
             {reviews.length > 0 ? (
               <div className="grid grid-cols-1">
-                {reviews.map((review, idx) => (
-                  <div 
-                    key={review.id} 
-                    className={`col-start-1 row-start-1 bg-surface-container-low p-8 md:p-14 rounded-[3rem] flex flex-col justify-between border border-outline-variant/10 shadow-sm transition-all duration-1000 ease-in-out overflow-hidden w-full min-w-0 ${idx === currentReviewIndex ? 'opacity-100 translate-x-0 z-10' : 'opacity-0 translate-x-8 pointer-events-none z-0'}`}
-                  >
-                    <div className="mb-8">
-                      <div className="flex gap-1 mb-6">
-                        {[...Array(5)].map((_, i) => (
-                          <span key={i} className="material-symbols-outlined text-primary text-sm">star</span>
-                        ))}
+                {reviews.map((review, idx) => {
+                  const limit = 140;
+                  const commentText = review.comment || "An absolutely wonderful experience from start to finish. The personalization was perfect.";
+                  const displayComment = commentText.length > limit ? commentText.substring(0, limit).trim() + "..." : commentText;
+
+                  return (
+                    <div 
+                      key={review.id} 
+                      className={`col-start-1 row-start-1 bg-surface-container-low p-6 md:p-12 rounded-[3rem] flex flex-col justify-between border border-outline-variant/10 shadow-sm transition-all duration-1000 ease-in-out overflow-hidden w-full min-w-0 h-[360px] sm:h-[310px] md:h-[330px] ${idx === currentReviewIndex ? 'opacity-100 translate-x-0 z-10' : 'opacity-0 translate-x-8 pointer-events-none z-0'}`}
+                    >
+                      <div className="mb-4 overflow-hidden flex-1">
+                        <div className="flex gap-1 mb-4">
+                          {[...Array(5)].map((_, i) => (
+                            <span key={i} className="material-symbols-outlined text-primary text-sm">star</span>
+                          ))}
+                        </div>
+                        <span className="material-symbols-outlined text-primary text-5xl opacity-10 mb-2 block">format_quote</span>
+                        <p className="font-display-md italic text-on-surface-variant leading-relaxed text-lg md:text-xl break-words overflow-wrap-anywhere min-w-0 w-full">
+                          &ldquo;{displayComment}&rdquo;
+                        </p>
                       </div>
-                      <span className="material-symbols-outlined text-primary text-5xl opacity-10 mb-2 block">format_quote</span>
-                      <p className="font-display-md italic text-on-surface-variant leading-relaxed text-xl md:text-2xl break-words overflow-wrap-anywhere min-w-0 w-full">
-                        &ldquo;{review.comment || "An absolutely wonderful experience from start to finish. The personalization was perfect."}&rdquo;
-                      </p>
+                      <div className="pt-6 border-t border-outline-variant/20 flex items-center gap-4 mt-auto">
+                        <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-lg">
+                          {review.user_name?.[0] || 'U'}
+                        </div>
+                        <div>
+                          <p className="font-title-sm text-primary mb-0.5">{review.user_name}</p>
+                          <p className="font-label-caps text-[10px] text-outline tracking-widest uppercase">{review.products?.name || "Verified Purchase"}</p>
+                        </div>
+                      </div>
                     </div>
-                    <div className="pt-8 border-t border-outline-variant/20 flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-lg">
-                        {review.user_name?.[0] || 'U'}
-                      </div>
-                      <div>
-                        <p className="font-title-sm text-primary mb-0.5">{review.user_name}</p>
-                        <p className="font-label-caps text-[10px] text-outline tracking-widest uppercase">{review.products?.name || "Verified Purchase"}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             ) : (
               <div className="py-20 text-center text-outline italic">
